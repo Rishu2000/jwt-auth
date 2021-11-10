@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Rishu2000/jwt-auth/issues"
   },
-  "homepage": "https://github.com/Rishu2000/jwt-auth#readme"
+  "homepage": "https://github.com/Rishu2000/jwt-auth#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
