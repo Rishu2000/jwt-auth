@@ -20,16 +20,33 @@ app.get('/posts', (req, res) => {
     res.json(posts);
 })
 
-app.get('/login', (req, res) => {
+app.get('/users', (req, res) => {
     res.json(users);
 })
 
-app.post('/login', async (req, res) => {
+app.post('/user', async (req, res) => {
     try {
         const hashedPassword = await bcrypt.hash(req.body.password,10);
         const user = {username:req.body.username, password:hashedPassword};
         users.push(user);
         res.json("Created");
+    }
+    catch {
+        res.status(500).json("Error");
+    }
+})
+
+app.post('/user/login', async (req, res) => {
+    const user = users.find(user => user.username === req.body.username);
+    if(user == null){
+        res.status(400).json("Incorrect username and password.");
+    }
+    try {
+        if(await bcrypt.compare(req.body.password, user.password)){
+            res.json("Successfully loged in.");
+        }else{
+            res.status.json("Password is incorrect.");
+        }
     }
     catch {
         res.status(500).json("Error");
