@@ -3,24 +3,14 @@ const app = express();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const posts = require('./route/posts');
 const port = 3003;
 
 app.use(express.json());
 
 const users = [];
-const posts = [
-    {
-        username:'Rishav',
-        post:'Post 1'
-    },{
-        username:'Kumar',
-        post:'Post 2'
-    }
-]
 
-app.get('/posts', (req, res) => {
-    res.json(posts);
-})
+app.use('/posts',posts);
 
 app.get('/users', (req, res) => {
     res.json(users);
