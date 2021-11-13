@@ -56,4 +56,9 @@ app.post('/token',(req,res) => {
     })
 })
 
+app.get('/logout',(req,res) => {
+    refToken = "";
+    res.json("Loged out Successfully.");
+})
+
 module.exports = app;
